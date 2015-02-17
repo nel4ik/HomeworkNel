@@ -4,7 +4,7 @@ browser = Watir::Browser.new :firefox
 
 
 browser.goto 'http://demo.redmine.org'
-username = 'nel40'
+username = 'nel48'
 
 # Register
 browser.link(class: 'register').click
@@ -54,7 +54,7 @@ fail unless browser.div(id:'flash_notice').text.include? 'Successful creation.'
 #AddUsersToProject
 browser.link(id: 'tab-members').click
 browser.text_field(id: 'principal_search' ).set 'nel1'
-sleep 3
+sleep 2
 browser.checkbox(xpath: "//*[@id='principals']/label[contains(text(),'nel1')]/input").set
 browser.checkbox(xpath: ".//*[@id='new_membership']/fieldset/p[2]/label[2]/input").set
 browser.button(id: 'member-add-submit').click
@@ -75,3 +75,28 @@ browser.text_field(id:'issue_subject').set 'test issue bug'
 browser.button(name: 'commit').click
 
 fail unless browser.div(id: 'flash_notice').text.include? 'created'
+fail unless browser.div(id: 'content').h2.text.include? 'Bug'
+
+#CreateAFeature
+browser.link(class: 'new-issue').click
+browser.select_list(id: 'issue_tracker_id').select('Feature')
+sleep 2
+browser.text_field(id:'issue_subject').set 'test issue feature'
+browser.button(name: 'commit').click
+
+fail unless browser.div(id: 'flash_notice').text.include? 'created'
+fail unless browser.div(id: "content").h2.text.include? 'Feature'
+
+
+#CreateASupport
+browser.link(class: 'new-issue').click
+browser.select_list(id: 'issue_tracker_id').select('Support')
+sleep 2
+browser.text_field(id:'issue_subject').set 'test issue support'
+browser.button(name: 'commit').click
+
+fail unless browser.div(id: 'flash_notice').text.include? 'created'
+fail unless browser.div(id: "content").h2.text.include? 'Support'
+
+#VisibilityOfIssues
+browser.link(class: 'issues').click
