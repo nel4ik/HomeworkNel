@@ -4,7 +4,7 @@ browser = Watir::Browser.new :firefox
 
 
 browser.goto 'http://demo.redmine.org'
-username = 'nel31'
+username = 'nel40'
 
 # Register
 browser.link(class: 'register').click
@@ -68,3 +68,10 @@ browser.text_field(id:'version_name').set 'version'+username
 browser.button(name: 'commit').click
 
 fail unless browser.div(id:'flash_notice').text.include? 'Successful creation.'
+
+#CreateABug
+browser.link(class: 'new-issue').click
+browser.text_field(id:'issue_subject').set 'test issue bug'
+browser.button(name: 'commit').click
+
+fail unless browser.div(id: 'flash_notice').text.include? 'created'
