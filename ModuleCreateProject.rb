@@ -9,11 +9,11 @@ module CreateProject
     @browser.button(value: 'Create').click
   end
 
-  def add_user_to_project
+  def add_user_to_project(member)
     @browser.link(id: 'tab-members').click
-    @browser.text_field(id: 'principal_search').set 'nel1'
+    @browser.text_field(id: 'principal_search').set member
     sleep 1
-    @browser.checkbox(xpath: "//*[@id='principals']/label[contains(text(),'nel1')]/input").set
+    @browser.checkbox(xpath: "//*[@id='principals']/label[contains(text(),'nel')]/input").set
     @browser.checkbox(xpath: ".//*[@id='new_membership']/fieldset/p[2]/label[2]/input").set
     @browser.button(id: 'member-add-submit').click
   end
