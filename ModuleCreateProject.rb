@@ -4,6 +4,8 @@ module CreateProject
     @browser.link(class: 'projects').click
     @browser.link(class: 'icon-add').click
 
+    @browser.text_field(id: 'project_identifier').set projectname+'1234567890'
+    @browser.button(value: 'Create').click
     @browser.text_field(id: 'project_name').set projectname
     @browser.text_field(id: 'project_identifier').set projectname+'1234567890'
     @browser.button(value: 'Create').click
@@ -17,6 +19,7 @@ module CreateProject
     @browser.checkbox(xpath: ".//*[@id='new_membership']/fieldset/p[2]/label[2]/input").set
     @browser.button(id: 'member-add-submit').click
   end
+
 
   def edit_project_version(version)
     @browser.link(id: 'tab-versions').click
