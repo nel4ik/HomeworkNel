@@ -2,7 +2,8 @@ require_relative 'D:\git\HW\cucumber_hw\features\support\ModuleRegisterLogin.rb'
 require_relative 'D:\git\HW\cucumber_hw\features\support\ModuleCreateProject'
 include RegisterAndLogin
 include CreateProject
-username = 'nel73'
+
+username = 'nel78'
 password = 'qwerty'
 username1 = username+'member1'
 username2 = username+'member2'
@@ -11,7 +12,9 @@ Given(/^i am on registration page$/) do
   @browser.goto 'http://demo.redmine.org'
 end
 
-When(/^i fill up registration data$/) do
+When(/^i fill up registration data with "([^"]*)" and "([^"]*)"$/) do |name, pass|
+  name = username
+  pass = password
   register_user(username,password)
 end
 
@@ -19,8 +22,9 @@ And(/^click submit button$/) do
   @browser.button(value: 'Submit').click
 end
 
-Then(/^I should be registered$/) do
-  expect(@browser.link(class:'user').text).to include username
+Then(/^I should be registered as "([^"]*)"$/) do |user|
+  user = username
+  expect(@browser.link(class:'user').text).to include user
 end
 
 When(/^i fill up registration form with incorrect (.*), (.*)$/) do |name, pass|
@@ -28,8 +32,9 @@ When(/^i fill up registration form with incorrect (.*), (.*)$/) do |name, pass|
   @browser.button(value: 'Submit').click
 end
 
+
 Then(/^i should see appropriate (.*)$/) do |error_message|
-  expect(@browser.div(id:'errorExplanation').text).to include ('Login can\'t be blank')
+  expect(@browser.div(id:'errorExplanation').text).to include error_message
 end
 
 Given(/^i am on login page$/) do
@@ -40,13 +45,9 @@ When(/^i fill login and password and click Login button$/) do
   login(username,password)
 end
 
-Then(/^I am logged in as correct user$/) do
-  expect(@browser.link(class:'user').text).to include username
-end
-
-Given(/^i am logged in$/) do
-  @browser.link(class: 'login').click
-  login(username,password)
+Then(/^I am logged in as "([^"]*)"$/) do |correct_user|
+  correct_user = username
+  expect(@browser.link(class:'user').text).to include correct_user
 end
 
 When(/^i create new project$/) do
@@ -57,10 +58,13 @@ Then(/^new project is created$/) do
   expect(@browser.div(id:'flash_notice').text).to include 'Successful creation.'
 end
 
-When(/^i change version of a project$/) do
-  edit_project_version('version'+username)
+When(/^i change version of a project to "([^"]*)"$/) do |project_name|
+  project_name = 'version'+username
+  edit_project_version(project_name)
 end
 
 Then(/^version is changed$/) do
   expect(@browser.div(id:'flash_notice').text).to include 'Successful creation.'
 end
+
+
