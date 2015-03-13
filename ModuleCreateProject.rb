@@ -3,9 +3,6 @@ module CreateProject
   def create_project(projectname)
     @browser.link(class: 'projects').click
     @browser.link(class: 'icon-add').click
-
-    @browser.text_field(id: 'project_identifier').set projectname+'1234567890'
-    @browser.button(value: 'Create').click
     @browser.text_field(id: 'project_name').set projectname
     @browser.text_field(id: 'project_identifier').set projectname+'1234567890'
     @browser.button(value: 'Create').click

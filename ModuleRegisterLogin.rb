@@ -8,7 +8,6 @@ def register_user(username,password)
   @browser.text_field(id: 'user_firstname').set('nel'+username)
   @browser.text_field(id: 'user_lastname').set('nel'+username)
   @browser.text_field(id: 'user_mail').set(username+'@test.com')
-  @browser.button(value: 'Submit').click
 end
 
 
