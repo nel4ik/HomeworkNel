@@ -16,6 +16,7 @@ username1 = username+'member1'
 username2 = username+'member2'
 
 register_user(username,password)
+@browser.button(value: 'Submit').click
 fail unless @browser.link(class:'user').text.include? username
 
 logout

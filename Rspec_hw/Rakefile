@@ -1,0 +1,17 @@
+require 'rspec/core/rake_task'
+
+namespace :smoke do
+  desc 'nfrnegvikfnd'
+  RSpec::Core::RakeTask.new(:task) do |task|
+    task.pattern = 'spec/scenario_spec.rb'
+  end
+
+  RSpec::Core::RakeTask.new(:second_task => :first_task) do |task|
+    task.pattern = 'spec/scenario_spec.rb'
+  end
+
+end
+
+
+
+task :default => 'smoke:task'

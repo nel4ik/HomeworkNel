@@ -17,7 +17,6 @@ end
 
 
 def login(username, password)
-  @browser.link(class: 'login').click
   @browser.text_field(id: 'username').set(username)
   @browser.text_field(id: 'password').set(password)
   @browser.button(name: 'login').click
