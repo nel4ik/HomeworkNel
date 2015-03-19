@@ -1,30 +1,32 @@
 require 'rspec'
 require 'page-object'
+require 'watir-webdriver'
+
+
 
 RSpec.configure do |config|
   config.include PageObject::PageFactory
   config.before :all do
     @browser = Watir::Browser.new :firefox
-    @browser.window.maximize
   end
 
-  config.after :all do
-    @browser.close
-  end
+  # config.after :all do
+  #   @browser.close
+  # end
 
 end
 
 
 shared_examples 'current url include' do |message|
-      it "include #{message}" do
+      it "#{message}" do
       expect(@current_page.current_url).to include message
     end
 end
 
-shared_exaples 'has flash notice' do |message|
+shared_examples 'flash notice' do |message|
   describe 'message' do
-    it "is includes #{message}" do
-      expect(@current_page.flash_notice).to include message
+    it "includes #{message}" do
+      expect(on(MyAccountPage).flash_notice).to include message
     end
 
   end

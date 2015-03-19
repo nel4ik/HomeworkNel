@@ -1,0 +1,9 @@
+registerpage:
+      login_field: nel
+      password_field: qwerty
+      password_confirm_field: qwerty
+      first_name_field: nel
+      last_name_field: nel
+      email_field: ~email_address
+
+
