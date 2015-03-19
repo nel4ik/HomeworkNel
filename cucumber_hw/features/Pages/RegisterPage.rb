@@ -16,7 +16,7 @@ class RegisterPage
     page.error_div_element.unordered_list_element
   end
 
-  def register_user(user= {})
+  def register_user(login,pass)
     populate_page_with data_for(:registerpage, user)
     submit_button
   end

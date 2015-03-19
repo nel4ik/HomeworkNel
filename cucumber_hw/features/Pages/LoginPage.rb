@@ -9,7 +9,7 @@ class LoginPage
 
   def login(login,password)
     self.login = login
-    self.password =password
+    self.password = password
     sign_in
   end
 
