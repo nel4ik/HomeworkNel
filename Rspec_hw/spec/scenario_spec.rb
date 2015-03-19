@@ -12,7 +12,7 @@ require_relative '../../Rspec_hw/Pages/project_page'
 
 describe 'Full scenario', :external do
 
-  username = 'nel1'
+  username = 'nel2'
   password = 'qwerty'
 
   describe 'Registration flow: ' do
